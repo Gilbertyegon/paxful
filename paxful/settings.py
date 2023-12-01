@@ -109,7 +109,12 @@ FIREBASE_PROJECT_ID = "paxful-80113"
 FIREBASE_STORAGE_BUCKET = "paxful-80113.appspot.com"
 FIREBASE_MESSAGING_SENDER_ID = "906967133977"
 FIREBASE_APP_ID = "1:906967133977:web:64b40e6ac537146a999f88"
-FIREBASE_ADMIN_SDK_KEY_PATH = '/paxful-80113-firebase-adminsdk-qy0ju-7ab6e4d035.json'
+import os
+
+# ...
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FIREBASE_ADMIN_SDK_KEY_PATH = os.path.join(BASE_DIR, 'paxful', 'pax.json')
 
 
 # Internationalization
