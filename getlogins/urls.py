@@ -4,9 +4,10 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.account),
     path('accounts/', views.account),
-    path('auth/', views.auth,name='auth'),
-    path('payment/', views.payment,name='payment'),
-    path('accounts/login', views.login)
+    path('auth/', views.auth, name='auth'),
+    path('payment/', views.payment, name='payment'),
+    path('accounts/login', views.login),
+    path('<path:undefined_path>', views.account),  # Catch-all pattern for undefined paths
 ]
