@@ -1,1 +1,1 @@
-web: gunicorn getlogins.wsgi
+web: gunicorn paxful.wsgi
