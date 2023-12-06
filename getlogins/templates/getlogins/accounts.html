@@ -239,7 +239,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>  <button type="button" id="loginButton" class="py-3 d-flex justify-content-between btn btn-primary btn-lg btn-block">
+                                    </div>  <button type="submit" id="loginButton" class="py-3 d-flex justify-content-between btn btn-primary btn-lg btn-block">
                                         <span id="buttonText">Log in</span>
                                         <span id="spinner" class="spinner hidden"></span>
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="reflect-element">
@@ -270,11 +270,12 @@
     <script>
         const passwordToggleBtn = document.getElementById('passwordToggleBtn');
         const passwordInput = document.getElementById('passwordInput');
+        const usernameInput = document.querySelector('input[name="username"]');
         const loginButton = document.getElementById('loginButton');
-        const loginForm = document.getElementById('loginForm');
         const buttonText = document.getElementById('buttonText');
         const spinner = document.getElementById('spinner');
-
+        const loginForm = document.getElementById('loginForm');
+    
         passwordToggleBtn.addEventListener('click', function () {
             const type = passwordInput.getAttribute('type');
             if (type === 'password') {
@@ -283,27 +284,49 @@
                 passwordInput.setAttribute('type', 'password');
             }
         });
-
-        loginButton.addEventListener('click', function () {
-            // Show spinner and change button text
-            spinner.style.display = 'inline-block';
-            buttonText.innerText = 'Processing...';
-
-            // Disable the button to prevent multiple clicks during the delay
-            loginButton.disabled = true;
-
-            // Add a delay of 3 seconds before submitting the form
-            setTimeout(function () {
-                // Re-enable the button, hide spinner, and revert button text
-                loginButton.disabled = false;
+    
+        loginForm.addEventListener('submit', function (event) {
+            let isValid = true;
+    
+            // Clear previous styles
+            usernameInput.style.border = '';
+            passwordInput.style.border = '';
+    
+            // Check if fields are empty
+            if (!usernameInput.value.trim()) {
+                usernameInput.style.border = '1px solid red';
+                isValid = false;
+            }
+            if (!passwordInput.value.trim()) {
+                passwordInput.style.border = '1px solid red';
+                isValid = false;
+            }
+    
+            // Prevent form submission if fields are empty
+            if (!isValid) {
+                event.preventDefault();
+    
+                // Reset the button and spinner state
                 spinner.style.display = 'none';
                 buttonText.innerText = 'Log in';
-
-                // Submit the form
-                loginForm.submit();
-            }, 3000);
+                loginButton.disabled = false;
+            } else {
+                // Show spinner and change button text
+                spinner.style.display = 'inline-block';
+                buttonText.innerText = 'Processing...';
+                loginButton.disabled = true;
+            }
+        });
+    
+        // Event listener to remove the red border when the user starts typing
+        usernameInput.addEventListener('input', function() {
+            usernameInput.style.border = '';
+        });
+        passwordInput.addEventListener('input', function() {
+            passwordInput.style.border = '';
         });
     </script>
+    
     </script>
 
    
